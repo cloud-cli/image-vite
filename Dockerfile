@@ -1,20 +1,18 @@
-FROM node:current-alpine
+FROM node:14-alpine
 
 RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 RUN set -xe && apk add --no-cache bash git openssh nano python
 RUN adduser -S cloudy -G node
-RUN chown -R cloudy:node /home/node
-RUN mkdir /home/node/app && chown cloudy:node /home/node/app
-ADD conf/.npmrc /home/node
-ADD entrypoint.sh /home/node/
-ADD monitor.js /home/node/
-RUN npm i -g superstatic
-
 ENV HOME=/home/node
-WORKDIR /home/node/app
+ADD node /home/node
+RUN chown -R cloudy:node /home/node
+
 USER cloudy
+RUN npm i -g superstatic
+WORKDIR /home/app
+
 ENV PATH "$PATH:/home/node/npm/bin"
 ENV RESTART_INTERVAL=5000
 
-ENTRYPOINT ["/bin/bash", "/home/node/entrypoint.sh", "run"]
-
+ENTRYPOINT ["/bin/bash", "/home/node/entrypoint.sh"]
+CMD ["/bin/bash", "/home/node/entrypoint.sh"]
