@@ -1,7 +1,7 @@
 FROM node:14-alpine
 
 RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
-RUN set -xe && apk add --no-cache bash git openssh nano python
+RUN set -xe && apk add --no-cache bash git openssh nano python3
 RUN adduser -S cloudy -G node
 ENV HOME=/home/node
 ADD node /home/node
