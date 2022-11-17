@@ -6,12 +6,9 @@ Read the Cloudy documentation for more details.
 
 ## Usage
 
-Create a Cloudy service configuration and use the type "node" for a minimal setup.
-
-```json
-{
-  "type": "node"
-}
+```bash
+docker build -t image .
+docker run --rm -v /path/to/app:/home/app image
 ```
 
 ### As a static server

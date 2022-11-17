@@ -10,9 +10,6 @@ RUN chown -R cloudy:node /home/node
 USER cloudy
 RUN npm i -g superstatic
 WORKDIR /home/app
+ENTRYPOINT ["/bin/bash", "/home/node/entrypoint.sh"]
 
 ENV PATH "$PATH:/home/node/npm/bin"
-ENV RESTART_INTERVAL=5000
-
-ENTRYPOINT ["/bin/bash", "/home/node/entrypoint.sh"]
-CMD ["/bin/bash", "/home/node/entrypoint.sh"]
