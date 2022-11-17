@@ -1,16 +1,28 @@
 # Node.js
 
-This is a [Node.js](https://nodejs.org/) base image for [Cloudy](https://github.com/cloud-cli/cloudy)
+This is a [Node.js](https://nodejs.org/) base image for [Cloudy](https://github.com/cloud-cli)
 
-### Usage
+Read the Cloudy documentation for more details.
 
-Create a Cloudy service configuration and use the type "node".
+## Usage
+
+Create a Cloudy service configuration and use the type "node" for a minimal setup.
 
 ```json
 {
-  "type": "node",
-  ...
+  "type": "node"
 }
 ```
 
-Read the Cloudy documentation for more details.
+### As a static server
+
+Create a `superstatic.json` file to [add configurations](https://github.com/firebase/superstatic#configuration)
+
+### As a Node.js app
+
+Add an entry to `package.json` with the `main` field pointing to the app's entrypoint
+
+### Zero-config
+
+Having a `index.js` present is enough to start the app
+
