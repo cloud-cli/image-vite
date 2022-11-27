@@ -29,8 +29,8 @@ jobs:
           context: .
           push: true
           tags: ${{ env.TAG }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
 
       - name: Build latest
         if: github.ref == 'refs/heads/${{ inputs.defaultBranch }}'
@@ -39,5 +39,5 @@ jobs:
           context: .
           push: true
           tags: ${{ env.LATEST_TAG }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
