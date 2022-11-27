@@ -10,8 +10,8 @@ jobs:
       packages: write
 
     env:
-      TAG: ghcr.io/node:${{ github.sha }}
-      LATEST_TAG: ghcr.io/node:latest
+      TAG: ghcr.io/cloud-cli/node:${{ github.sha }}
+      LATEST_TAG: ghcr.io/cloud-cli/node:latest
 
     steps:
       - uses: actions/checkout@v3
@@ -29,8 +29,6 @@ jobs:
           context: .
           push: true
           tags: ${{ env.TAG }}
-          # cache-from: type=gha
-          # cache-to: type=gha,mode=max
 
       - name: Build latest
         if: github.ref == 'refs/heads/${{ inputs.defaultBranch }}'
@@ -39,5 +37,3 @@ jobs:
           context: .
           push: true
           tags: ${{ env.LATEST_TAG }}
-          # cache-from: type=gha
-          # cache-to: type=gha,mode=max
