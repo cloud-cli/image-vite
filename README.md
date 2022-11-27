@@ -1,14 +1,21 @@
-# Node.js
+# Node.js image
 
 This is a [Node.js](https://nodejs.org/) base image for [Cloudy](https://github.com/cloud-cli)
 
-Read the Cloudy documentation for more details.
-
 ## Usage
 
+Create a Dockerfile 
+
+```Dockerfile
+FROM ghcr.io/cloud-cli/node
+ADD . /home/app
+```
+
+Build an app
+
 ```bash
-docker build -t image .
-docker run --rm -v /path/to/app:/home/app image
+docker build -t app-image .
+docker run --rm app-image
 ```
 
 ### As a static server
