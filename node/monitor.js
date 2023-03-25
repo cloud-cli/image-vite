@@ -50,14 +50,7 @@ function getCommand() {
   if (FS.existsSync(staticsJson)) {
     return {
       command: "superstatic",
-      args: [
-        "--port",
-        process.env.PORT,
-        "--host",
-        "0.0.0.0",
-        "--debug",
-        "true",
-      ],
+      args: ["--port", "8080", "--host", "0.0.0.0", "--debug", "true"],
     };
   }
 
@@ -72,8 +65,11 @@ function getCommand() {
     }
   }
 
-  if (FS.existsSync(Path.join(process.cwd(), "index.js"))) {
-    return { command: "node", args: ["index.js"] };
+  const indexFiles = ["index.js", "index.mjs"];
+  for (const file of indexFiles) {
+    if (FS.existsSync(Path.join(process.cwd(), file))) {
+      return { command: "node", args: [file] };
+    }
   }
 
   return { command: "", args: [] };

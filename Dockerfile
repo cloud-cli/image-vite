@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM docker.io/node:19-alpine
 
 RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 RUN set -xe && apk add --no-cache bash git openssh nano python3
