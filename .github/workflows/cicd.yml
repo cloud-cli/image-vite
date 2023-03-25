@@ -35,7 +35,7 @@ jobs:
           tags: ${{ env.TAG }}
 
       - name: Build latest
-        if: github.ref == 'refs/heads/${{ inputs.defaultBranch }}'
+        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v4
         with:
           context: .
