@@ -12,4 +12,5 @@ RUN npm i -g superstatic
 WORKDIR /home/app
 ENTRYPOINT ["/bin/bash", "/home/node/entrypoint.sh"]
 
-ENV PATH "$PATH:/home/node/npm/bin"
+ENV PATH "$PATH:/home/node/npm/bin:/home/app/node_modules/.bin"
+ENV PORT 8080
