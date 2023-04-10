@@ -51,6 +51,7 @@ function getCommand() {
     return {
       command: "superstatic",
       args: [
+        ".",
         "--port",
         process.env.PORT || "8080",
         "--host",
