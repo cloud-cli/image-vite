@@ -1,7 +1,7 @@
 FROM docker.io/node:19-alpine
 
 RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
-RUN set -xe && apk add --no-cache bash git openssh nano python3
+RUN set -xe && apk add --no-cache bash git openssh nano python3 gcc make libc-dev
 RUN adduser -S cloudy -G node
 ENV HOME=/home/node
 ADD node /home/node
