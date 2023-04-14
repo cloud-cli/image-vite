@@ -5,7 +5,7 @@ RUN set -xe && apk add --no-cache bash git openssh nano python3 curl gcc g++ mak
 RUN adduser -S cloudy -G node
 ENV HOME=/home/node
 ADD node /home/node
-RUN chown -R cloudy:node /home/node
+RUN mkdir /home/app && chown -R cloudy:node /home
 
 USER cloudy
 RUN npm i -g superstatic
