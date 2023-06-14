@@ -9,10 +9,6 @@ jobs:
       contents: read
       packages: write
 
-    env:
-      TAG: ghcr.io/cloud-cli/vite:${{ github.sha }}
-      LATEST_TAG: ghcr.io/cloud-cli/vite:latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -32,7 +28,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ env.TAG }}
+          tags: ghcr.io/cloud-cli/vite:${{ github.sha }}
 
       - name: Build latest
         if: github.ref == 'refs/heads/main'
@@ -41,4 +37,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ env.LATEST_TAG }}
+          tags: ghcr.io/cloud-cli/vite:latest
