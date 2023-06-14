@@ -1,4 +1,4 @@
-FROM gchr.io/cloud-cli/node
+FROM gchr.io/cloud-cli/node:latest
 
 ADD workspace /home/workspace
 COPY entrypoint.sh /home/node/vite-entrypoint.sh
