@@ -1,1 +1,0 @@
-cd /home/app && node /home/node/monitor.js

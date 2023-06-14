@@ -1,17 +1,9 @@
 FROM docker.io/node:19-alpine
 
-RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
-RUN set -xe && apk add --no-cache bash git openssh nano python3 curl gcc g++ make libc-dev
-RUN git config --global --add safe.directory /home/app
-ENV HOME=/home/node
-RUN mkdir -p /home/app
-COPY node /home/node
-RUN chown -R node:node /home
+ADD workspace /home/workspace
+COPY entrypoint.sh /home/node/vite-entrypoint.sh
+RUN cd /home/workspace && npm i && ln -s /home/app /home/workspace/app && chmod +x /home/node/vite-entrypoint.sh
+ENTRYPOINT ["/bin/bash", "/home/node/vite-entrypoint.sh"]
 
-USER node
-RUN npm i -g superstatic
-WORKDIR /home/app
-ENTRYPOINT ["/bin/bash", "/home/node/entrypoint.sh"]
-
-ENV PATH "$PATH:/home/node/npm/bin:/home/app/node_modules/.bin"
+ENV PATH "$PATH:/home/node/npm/bin:/home/app/node_modules/.bin:/home/workspace/node_modules/.bin"
 ENV PORT 8080

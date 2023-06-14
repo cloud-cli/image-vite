@@ -10,8 +10,8 @@ jobs:
       packages: write
 
     env:
-      TAG: ghcr.io/cloud-cli/node:${{ github.sha }}
-      LATEST_TAG: ghcr.io/cloud-cli/node:latest
+      TAG: ghcr.io/cloud-cli/vite:${{ github.sha }}
+      LATEST_TAG: ghcr.io/cloud-cli/vite:latest
 
     steps:
       - uses: actions/checkout@v3

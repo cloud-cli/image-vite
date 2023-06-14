@@ -1,3 +1,9 @@
 package.json
 package-lock.json
 README.md
+src/
+.github/
+node_modules/
+jest*
+rollup*
+tsconfig*.json
