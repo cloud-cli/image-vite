@@ -1,4 +1,4 @@
-FROM docker.io/node:19-alpine
+FROM gchr.io/cloud-cli/node
 
 ADD workspace /home/workspace
 COPY entrypoint.sh /home/node/vite-entrypoint.sh
