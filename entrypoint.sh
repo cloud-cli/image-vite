@@ -1,12 +1,15 @@
 case $1 in
 
   build)
-    cd /home/workspace;
+    echo "Building vite project"
+    cd /home/workspace
     node merge-packages.js
     cp superstatic.json /home/app/
-    [ -f /home/app/index.html ] && cp /home/app/index.html /home/workspace/;
-    npm run ci || exit 1;
-    [ -d /home/app/assets ] && cp -r /home/app/assets /home/workspace/dist/;
+    cp .dockerignore /home/app/
+    [ -f /home/app/index.html ] && cp /home/app/index.html /home/workspace/
+    npm run ci || exit 1
+    [ -d /home/app/assets ] && cp -r /home/app/assets/* /home/workspace/dist/
+    ls -al /home/app
     ;;
 
   dev)
@@ -16,6 +19,7 @@ case $1 in
   preview)
     cd /home/workspace;
     node merge-packages.js
+    echo "Running preview server"
     npm i && npm run preview --host 0.0.0.0 --port $PORT
     ;;
 
