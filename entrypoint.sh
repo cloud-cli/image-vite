@@ -7,6 +7,7 @@ case $1 in
     cp superstatic.json /home/app/
     cp .dockerignore /home/app/
     [ -f /home/app/index.html ] && cp /home/app/index.html /home/workspace/
+    [ -f /home/app/manifest.json ] && cp /home/app/manifest.json /home/workspace/
     npm run ci || exit 1
     [ -d /home/app/assets ] && cp -r /home/app/assets/* /home/workspace/dist/
     mv /home/workspace/dist /home/app

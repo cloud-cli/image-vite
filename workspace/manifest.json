@@ -1,5 +1,5 @@
 {
-  "name": "%app%",
+  "name": "App",
   "short_name": "",
   "description": "An application",
   "icons": [
@@ -9,8 +9,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
-  "theme_color": "#33333#",
+  "theme_color": "#333333",
   "background_color": "#ffffff"
 }
