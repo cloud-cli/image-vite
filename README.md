@@ -53,3 +53,9 @@ docker build -t my-app .
 ```
 
 The app is now ready to run or publish!
+
+## Run app preview
+
+```sh
+docker run --rm -p 80:8080 -e PORT=8080 -v $PWD:/home/app ghcr.io/cloud-cli/vite:latest preview
+```
