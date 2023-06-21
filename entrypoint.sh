@@ -3,7 +3,7 @@ case $1 in
   build)
     cd /home/workspace;
     [ -f /home/app/index.html ] && cp /home/app/index.html /home/workspace/;
-    npm run ci
+    npm run ci || exit 1;
     [ -d /home/app/assets ] && cp -r /home/app/assets /home/workspace/dist/;
     ;;
 
