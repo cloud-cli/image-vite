@@ -4,16 +4,52 @@ This is a [Node.js](https://nodejs.org/) base image for [Cloudy](https://github.
 
 ## Usage
 
-Create a Dockerfile
+First, create a project:
+
+- `main.ts`:
+
+```
+import { createApp } from "vue";
+import App from "./App.vue";
+
+createApp(App).use(router).mount("#app");
+```
+
+- `index.html`
+```html
+<div id="app"></div>
+<script type="module" src="/src/main.ts"></script>
+```
+
+- `App.vue`
+```
+<template>
+  <div>Hello, {{ name }}!</div>
+</template>
+<script setup>
+const name = 'world';
+</script>
+```
+
+Then run a build
+
+```sh
+docker run --rm -v $PWD:/home/app ghcr.io/cloud-cli/vite:latest build
+```
+
+## Creating a container
+
+After build, create a Dockerfile
 
 ```Dockerfile
-FROM ghcr.io/cloud-cli/vite
+FROM ghcr.io/cloud-cli/node:latest
 ADD . /home/app
 ```
 
-Build an app
+Then build the image:
 
-```bash
-docker build -t app-image .
-docker run --rm app-image
 ```
+docker build -t my-app .
+```
+
+The app is now ready to run or publish!

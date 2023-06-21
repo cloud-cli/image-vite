@@ -1,7 +1,9 @@
 case $1 in
 
   build)
-    cd /home/workspace && npm run ci
+    cd /home/workspace;
+    [ -f /home/app/index.html ] && cp /home/app/index.html /home/workspace/;
+    npm run ci
     ;;
 
   dev)
