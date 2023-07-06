@@ -18,7 +18,7 @@ createApp(App).mount("#app");
 - `index.html`
 ```html
 <div id="app"></div>
-<script type="module" src="/src/main.ts"></script>
+<script type="module" src="src/main.ts"></script>
 ```
 
 - `App.vue`
@@ -26,6 +26,7 @@ createApp(App).mount("#app");
 <template>
   <div>Hello, {{ name }}!</div>
 </template>
+
 <script setup>
 const name = 'world';
 </script>
