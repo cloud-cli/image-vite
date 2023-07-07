@@ -1,3 +1,5 @@
+set -xe
+
 case $1 in
 
   build)
