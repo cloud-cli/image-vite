@@ -12,6 +12,7 @@ jobs:
     uses: cloud-cli/workflows/.github/workflows/docker-ghcr-build.yml@main
     with:
       name: cloud-cli/vite
+      withSha: false
       withTag: true
       arch: linux/amd64,linux/arm64
 
