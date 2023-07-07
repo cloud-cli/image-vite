@@ -11,6 +11,7 @@ case $1 in
     cp .dockerignore $SRC
     [ -f $SRC/index.html ] && cp $SRC/index.html /home/workspace/
     [ -f $SRC/manifest.json ] && cp $SRC/manifest.json /home/workspace/
+    ls -al .
     npm run ci || exit 1
     [ -d $SRC/assets ] && cp -r $SRC/assets/* /home/workspace/dist/
     mv /home/workspace/dist $SRC/
