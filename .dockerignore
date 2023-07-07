@@ -3,6 +3,7 @@ package-lock.json
 README.md
 src/
 .github/
+.git
 node_modules/
 jest*
 rollup*
