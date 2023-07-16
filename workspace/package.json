@@ -5,7 +5,7 @@
   "scripts": {
     "ci": "npm i && npm run check && npm run build",
     "check": "vue-tsc",
-    "build": "vite build",
+    "build": "vite build --assetsInlineLimit=0",
     "dev": "vite --host 0.0.0.0",
     "preview": "vite preview"
   },
