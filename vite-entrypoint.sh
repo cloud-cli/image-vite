@@ -25,7 +25,7 @@ case $1 in
     cd /home/workspace;
     node merge-packages.js
     echo "Running preview server"
-    npm i && npm run preview --host 0.0.0.0 --port $PORT
+    npm i && npm run preview -- --host 0.0.0.0 --port $PORT
     ;;
 
   *)
