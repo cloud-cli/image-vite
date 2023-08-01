@@ -9,7 +9,7 @@ case $1 in
     node merge-packages.js
     cp superstatic.json $SRC
     cp .dockerignore $SRC
-    for file in (index.html manifest.json superstatic.json); do
+    for file in index.html manifest.json superstatic.json; do
       [ -f "$SRC/$file" ] && cp $SRC/$file /home/workspace/
     done
     npm run ci || exit 1
