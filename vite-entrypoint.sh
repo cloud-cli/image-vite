@@ -7,11 +7,14 @@ case $1 in
     echo "Building vite project"
     cd /home/workspace
     node merge-packages.js
-    cp superstatic.json $SRC
     cp .dockerignore $SRC
+
+    [ -f "$SRC/superstatic.json" ] || cp superstatic.json $SRC
+
     for file in index.html manifest.json superstatic.json; do
       [ -f "$SRC/$file" ] && cp $SRC/$file /home/workspace/
     done
+
     npm run ci || exit 1
     [ -d $SRC/assets ] && cp -r $SRC/assets/* /home/workspace/dist/
     mv /home/workspace/dist $SRC/
