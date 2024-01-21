@@ -1,9 +1,10 @@
 set -xe
 
+SRC=/home/workspace/src
+
 case $1 in
 
   build)
-    SRC=/home/workspace/src
     echo "Building vite project"
     cd /home/workspace
     node merge-packages.js
@@ -22,7 +23,10 @@ case $1 in
     ;;
 
   dev)
-    cd /home/workspace && npm run dev
+    cd /home/workspace
+    [ -d $SRC/assets ] && ln -s $SRC/assets /home/workspace/assets
+    [ -f $SRC/index.html ] && cp $SRC/index.html /home/workspace/
+    npm run dev
     ;;
 
   preview)
