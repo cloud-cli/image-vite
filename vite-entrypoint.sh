@@ -8,7 +8,7 @@ case $1 in
   build)
     echo "Building vite project"
     cd $SRC
-    node /home/workspace/merge-package.js && npm i
+    node /home/workspace/merge-packages.js && npm i
     npx vite build --assetsInlineLimit=0 --config /home/workspace/vite.config.ts
     cp $WORKSPACE/.dockerignore $SRC
 
@@ -19,14 +19,14 @@ case $1 in
 
   dev)
     cd $SRC
-    node /home/workspace/merge-package.js && npm i
+    node /home/workspace/merge-packages.js && npm i
     npx vite --host 0.0.0.0 --port $PORT
     ;;
 
   preview)
     cd $SRC
     echo "Running preview server"
-    node /home/workspace/merge-package.js && npm i
+    node /home/workspace/merge-packages.js && npm i
     npx vite preview --host 0.0.0.0 --port $PORT
     ;;
 
