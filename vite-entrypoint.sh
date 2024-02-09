@@ -1,49 +1,35 @@
-set -xe
+set -e
 
-SRC=/home/workspace/src
+SRC=/home/app
+WORKSPACE=/home/workspace
 
 case $1 in
 
   build)
     echo "Building vite project"
-    cd /home/workspace
-    node merge-packages.js
-
-    # add
-    cp .dockerignore $SRC
-    [ -f "$SRC/superstatic.json" ] || cp superstatic.json $SRC
+    cd $SRC
+    npm i
+    npx vite build --assetsInlineLimit=0 --config /home/workspace/vite.config.ts
+    cp $WORKSPACE/.dockerignore $SRC
 
     # pull custom files from source folder
-    for file in index.html manifest.json superstatic.json; do
-      [ -f "$SRC/$file" ] && cp $SRC/$file /home/workspace/
-    done
-
-    # sort out extra assets
-    npm run ci || exit 1
-    [ -d $SRC/assets ] && cp -r $SRC/assets /home/workspace/dist/assets
-    ls -al /home/workspace/*
-    mv /home/workspace/dist $SRC/
-    ls -al $SRC/dist
+    [ -f "$SRC/superstatic.json" ] || cp $WORKSPACE/superstatic.json $SRC
     ;;
 
   dev)
-    cd /home/workspace
-    [ -d $SRC/assets ] && ln -s $SRC/assets /home/workspace/assets
-    [ -f $SRC/index.html ] && rm /home/workspace/index.html && ln -s $SRC/index.html /home/workspace/
-    ls -al /home/workspace
+    cd $SRC
     npm i
-    npm run dev
+    npx vite --host 0.0.0.0 --port $PORT
     ;;
 
   preview)
-    cd /home/workspace;
-    node merge-packages.js
+    cd $SRC
     echo "Running preview server"
     npm i
-    npm run preview
+    npx vite preview --host 0.0.0.0 --port $PORT
     ;;
 
   *)
-    sh /home/node/entrypoint.sh $@
+    sh /home/node/entrypoint.sh
     ;;
 esac
