@@ -14,7 +14,7 @@ case $1 in
 
     # pull custom files from source folder
     [ -f "$SRC/superstatic.json" ] || cp $WORKSPACE/superstatic.json $SRC
-    [ -d "$SRC/assets" ] && cp -R $SRC/assets $SRC/dist/assets
+    [ -d "$SRC/assets" ] && cp -R $SRC/assets/ $SRC/dist/assets/
     ;;
 
   dev)
