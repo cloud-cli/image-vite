@@ -1,6 +1,7 @@
 FROM ghcr.io/cloud-cli/node:latest
 
 USER root
+RUN mkdir /home/node/npm
 COPY workspace /home/workspace
 RUN cd /home/workspace && npm i --no-audit
 COPY vite-entrypoint.sh /home/node/vite-entrypoint.sh
