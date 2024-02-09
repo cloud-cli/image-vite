@@ -9,7 +9,7 @@ case $1 in
     echo "Building vite project"
     cd $SRC
     npm i
-    npx vite build --assetsInlineLimit=0 --config /home/workspace/vite.config.ts
+    npm exec vite -- build --assetsInlineLimit=0 --config /home/workspace/vite.config.ts
     cp $WORKSPACE/.dockerignore $SRC
 
     # pull custom files from source folder
@@ -19,14 +19,14 @@ case $1 in
   dev)
     cd $SRC
     npm i
-    npx vite --host 0.0.0.0 --port $PORT
+    npm exec vite -- --host 0.0.0.0 --port $PORT
     ;;
 
   preview)
     cd $SRC
     echo "Running preview server"
     npm i
-    npx vite preview --host 0.0.0.0 --port $PORT
+    npm exec vite -- preview --host 0.0.0.0 --port $PORT
     ;;
 
   *)
