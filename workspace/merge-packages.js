@@ -1,21 +1,21 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const source = '/home/workspace/src/package.json';
-const target = '/home/workspace/package.json';
+const appPackage = "/home/app/package.json";
+const workspacePackage = "/home/workspace/package.json";
 
-if (fs.existsSync(source)) {
-  const left = JSON.parse(fs.readFileSync(target, 'utf8'));
-  const right = JSON.parse(fs.readFileSync(source, 'utf8'));
+if (fs.existsSync(appPackage)) {
+  const left = JSON.parse(fs.readFileSync(appPackage, "utf8"));
+  const right = JSON.parse(fs.readFileSync(workspacePackage, "utf8"));
 
   left.dependencies ||= {};
+  left.devDependencies ||= {};
 
-  Object.assign(left.scripts, right.scripts || {});
   Object.assign(left.dependencies, right.dependencies || {});
   Object.assign(left.devDependencies, right.devDependencies || {});
 
   const pkg = JSON.stringify(left, null, 2);
-  fs.writeFileSync(target, pkg);
+  fs.writeFileSync(appPackage, pkg);
 
-  console.log('Added project dependencies');
+  console.log("Added project dependencies");
   console.log(pkg);
 }
