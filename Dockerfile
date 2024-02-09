@@ -3,7 +3,7 @@ FROM ghcr.io/cloud-cli/node:latest
 USER root
 RUN mkdir -p /home/node/npm/lib
 COPY workspace /home/workspace
-RUN cd /home/workspace && npm i --no-audit
+RUN cd /home/workspace && npm i --no-audit && npm i -g vite
 COPY vite-entrypoint.sh /home/node/vite-entrypoint.sh
 RUN chmod +x /home/node/vite-entrypoint.sh
 ENTRYPOINT ["/bin/bash", "/home/node/vite-entrypoint.sh"]
